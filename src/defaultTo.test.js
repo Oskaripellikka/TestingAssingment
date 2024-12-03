@@ -1,6 +1,5 @@
 import defaultTo from './defaultTo.js'
 
-
 test('Testing null value',() => {
     expect(defaultTo(null, 0)).toBe(0);
 });
