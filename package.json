@@ -13,5 +13,8 @@
     "@babel/preset-react": "^7.25.9",
     "@babel/preset-typescript": "^7.26.0",
     "save-dev": "^0.0.1-security"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   }
 }
