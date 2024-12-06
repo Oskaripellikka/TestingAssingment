@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/Oskaripellikka/TestingAssingment/badge.svg?branch=main)](https://coveralls.io/github/Oskaripellikka/TestingAssingment?branch=main)
+
 # Student template
 
 ## Purpose of this repository
