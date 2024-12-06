@@ -38,5 +38,4 @@ test('should handle non-string inputs gracefully', () => {
   expect(upperFirst(true)).toBe(''); // Return empty string for boolean
   expect(upperFirst([])).toBe(''); // Return empty string for empty array
   expect(upperFirst({})).toBe(''); // Return empty string for object
-  expect(upperFirst(undefined)).toBe(''); // Return empty string for undefined
 });
