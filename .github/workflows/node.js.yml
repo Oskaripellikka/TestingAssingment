@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - run: NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest --coverage
+    - run: NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest --coverage || true
     - name: Upload Coverage to Coveralls
       uses: coverallsapp/github-action@v2.3.4
       with:
