@@ -37,14 +37,27 @@ test('should return NaN for invalid inputs', () => {
   expect(toNumber(Symbol('symbol'))).toBe(NaN); // Symbol should return NaN
 });
 
-test('should handle objects without valueOf as a function', () => {
-  const obj = { toString: () => '123' }; // No valueOf method
-  expect(toNumber(obj)).toBe(123); // Should use toString
+test('should handle cases where valueOf is not a function or missing', () => {
+  const custom1 = {
+    valueOf: 42, // valueOf is not a function
+    toString: () => '123',
+  };
+  expect(toNumber(custom1)).toBe(123); // Should fall back to toString
+
+  const custom2 = {
+    toString: () => '456', // No valueOf
+  };
+  expect(toNumber(custom2)).toBe(456); // Should fall back to toString
 });
 
 test('should handle invalid hexadecimal strings', () => {
   expect(toNumber('-0x1G')).toBe(NaN);
   expect(toNumber('0x')).toBe(NaN); // Just '0x' is invalid
+});
+
+test('should handle cases where value is not a bad hexadecimal string', () => {
+  expect(toNumber('0x1A')).toBe(26); // Valid hexadecimal
+  expect(toNumber('42')).toBe(42);  // Valid numeric string
 });
 
 test('should handle non-object returns from valueOf', () => {
@@ -59,15 +72,17 @@ test('should return 0 when input is 0 or -0', () => {
   expect(toNumber(-0)).toBe(-0); // Ensuring -0 remains -0
 });
 
+test('should handle cases where value is not 0 and fallback to +value occurs', () => {
+  expect(toNumber(42)).toBe(42);
+  expect(toNumber(-42)).toBe(-42);
+  expect(toNumber(null)).toBe(0); // Coerces null to 0
+  expect(toNumber(undefined)).toBe(NaN); // Coerces undefined to NaN
+});
+
 test('should handle objects with conflicting valueOf and toString', () => {
   const custom = {
     valueOf: () => '42',
     toString: () => '43',
   };
   expect(toNumber(custom)).toBe(42); // Should prioritize valueOf
-});
-
-test('should differentiate null and undefined', () => {
-  expect(toNumber(null)).toBe(0); // Null -> 0
-  expect(toNumber(undefined)).toBe(NaN); // Undefined -> NaN
 });
