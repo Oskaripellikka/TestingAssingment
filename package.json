@@ -18,8 +18,14 @@
     "presets": ["@babel/preset-env"]
   },
   "jest": {
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/src/.internal/"
+    "collectCoverageFrom": [
+      "src/add.js",
+      "src/ceil.js",
+      "src/defaultTo.js",
+      "src/filter.js",
+      "src/get.js",
+      "src/toNumber.js",
+      "src/upperFirst.js"
     ]
   }
 }
