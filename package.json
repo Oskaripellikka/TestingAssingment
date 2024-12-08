@@ -19,7 +19,7 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "<rootDir>/.internal/"
+      "<rootDir>/src/.internal/"
     ]
   }
 }
