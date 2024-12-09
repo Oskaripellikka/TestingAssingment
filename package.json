@@ -28,6 +28,7 @@
       "src/get.js",
       "src/toNumber.js",
       "src/upperFirst.js"
+      "src/chunk.js"
     ]
   }
 }
