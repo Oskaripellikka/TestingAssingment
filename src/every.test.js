@@ -23,3 +23,8 @@ test('Testing boolean array',() => {
 test('Testing boolean array, false one',() => {
     expect(every([true, 'world', 4, false, 'work'], isBoolean)).toBe(false);
 });
+
+test('Returns true for null or undefined input', () => {
+  expect(every(null, isInteger)).toBe(true);
+  expect(every(undefined, isString)).toBe(true);
+});
