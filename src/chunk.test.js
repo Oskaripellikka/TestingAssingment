@@ -19,3 +19,7 @@ test('Testing that chunk splits arrays to right sizes with chars',() => {
     const strarr = ['a', 'b', 'c', 'd'];
     expect(chunk(strarr, 2)).toEqual([['a', 'b'], ['c', 'd']]);
 });
+
+test('should return empty array when array is null', () => {
+    expect(chunk(null)).toEqual([]);
+});

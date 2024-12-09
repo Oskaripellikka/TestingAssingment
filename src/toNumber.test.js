@@ -40,13 +40,14 @@ test('should return NaN for invalid inputs', () => {
 test('should handle valid hexadecimal strings', () => {
   expect(toNumber('0x1A')).toBe(26); // Valid hex
   expect(toNumber('0x0')).toBe(0); // Valid hex zero
+  expect(toNumber('0x10')).toBe(16); // Valid hex
 });
 
 test('should return NaN for bad hexadecimal strings', () => {
   expect(toNumber('0x1G')).toBe(NaN); // Invalid hex
   expect(toNumber('0x')).toBe(NaN); // Invalid hex
   expect(toNumber('0xG1')).toBe(NaN); // Invalid hex
-  expect(toNumber('abc')).toBe(NaN); // Non-hex string
+  expect(toNumber('-0x')).toBe(NaN); // Negative hex prefix without digits
 });
 
 test('should handle cases where valueOf is not a function or missing', () => {
@@ -81,3 +82,20 @@ test('should handle objects with conflicting valueOf and toString', () => {
   };
   expect(toNumber(custom)).toBe(42); // Should prioritize valueOf
 });
+
+test('should return 0 when input is an object that is equal to 0', () => {
+  const objEqualToZero = {
+    valueOf: () => 0, // valueOf returns 0
+    toString: () => 'not used' // toString is not used in this case
+  };
+  
+  expect(toNumber(objEqualToZero)).toBe(0); // Should return 0
+});
+
+test('should return 0 for falsy values', () => {
+  expect(toNumber(false)).toBe(0); // Should return 0
+  expect(toNumber(null)).toBe(0);
+  expect(toNumber([])).toBe(0); // Should return 0
+  expect(toNumber('')).toBe(0); // Should return 0
+});
+
