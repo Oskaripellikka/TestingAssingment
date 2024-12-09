@@ -21,6 +21,7 @@
     "collectCoverageFrom": [
       "src/add.js",
       "src/at.js",
+      "src/chunk.js",
       "src/ceil.js",
       "src/defaultTo.js",
       "src/every.js",
@@ -28,7 +29,6 @@
       "src/get.js",
       "src/toNumber.js",
       "src/upperFirst.js"
-      "src/chunk.js"
     ]
   }
 }
