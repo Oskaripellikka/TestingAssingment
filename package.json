@@ -20,8 +20,10 @@
   "jest": {
     "collectCoverageFrom": [
       "src/add.js",
+      "src/at.js",
       "src/ceil.js",
       "src/defaultTo.js",
+      "src/every.js",
       "src/filter.js",
       "src/get.js",
       "src/toNumber.js",
