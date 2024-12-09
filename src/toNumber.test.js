@@ -30,12 +30,23 @@ test('should handle octal strings', () => {
 
 test('should return NaN for invalid inputs', () => {
   expect(toNumber('abc')).toBe(NaN);
-  expect(toNumber('0x1G')).toBe(NaN); // Invalid hex
-  expect(toNumber('0x')).toBe(NaN); // Invalid hex
   expect(toNumber(null)).toBe(0); // Null should return 0
   expect(toNumber(undefined)).toBe(NaN);
   expect(toNumber({})).toBe(NaN); // Object should return NaN
   expect(toNumber(Symbol('symbol'))).toBe(NaN); // Symbol should return NaN
+  expect(toNumber('non-numeric string')).toBe(NaN);
+});
+
+test('should handle valid hexadecimal strings', () => {
+  expect(toNumber('0x1A')).toBe(26); // Valid hex
+  expect(toNumber('0x0')).toBe(0); // Valid hex zero
+});
+
+test('should return NaN for bad hexadecimal strings', () => {
+  expect(toNumber('0x1G')).toBe(NaN); // Invalid hex
+  expect(toNumber('0x')).toBe(NaN); // Invalid hex
+  expect(toNumber('0xG1')).toBe(NaN); // Invalid hex
+  expect(toNumber('abc')).toBe(NaN); // Non-hex string
 });
 
 test('should handle cases where valueOf is not a function or missing', () => {
